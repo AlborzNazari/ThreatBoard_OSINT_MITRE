@@ -1,5 +1,21 @@
-import axios from "axios";
+export interface Finding {
+  source: string;
+  description: string;
+  indicator: string;
+}
 
-export const api = axios.create({
-  baseURL: "http://localhost:8000/api",
-});
+export interface Technique {
+  technique_id: string;
+  name: string;
+  confidence: number;
+}
+
+export interface ScanRequest {
+  target: string;
+}
+
+export interface ScanResponse {
+  target: string;
+  findings: Finding[];
+  techniques: Technique[];
+}
