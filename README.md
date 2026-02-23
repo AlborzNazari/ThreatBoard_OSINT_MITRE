@@ -50,37 +50,42 @@ The frontend displays a **5×5 grid** of techniques:
 ## 🏗️ Project Structure
 
 
+```mermaid
+
+flowchart TD
+
+    subgraph FE[Frontend (React + TypeScript)]
+        FE1[Components<br/>ThreatBoard.tsx<br/>ScanForm.tsx<br/>Layout.tsx]
+        FE2[Pages<br/>Home.tsx]
+        FE3[API Client<br/>client.ts]
+        FE4[Types<br/>api.ts]
+    end
+
+    subgraph BE[Backend (FastAPI + Python)]
+        BE1[main.py<br/>App entry + CORS]
+        BE2[schemas.py<br/>Typed models]
+        subgraph Services
+            BE3[osint.py<br/>Recon logic]
+            BE4[mapping.py<br/>MITRE mapping]
+            BE5[mitre.py<br/>Technique DB]
+        end
+    end
+
+    subgraph DB[MITRE ATT&CK Dataset]
+        DB1[Local JSON or static rules]
+    end
+
+    FE2 --> FE3
+    FE3 --> BE1
+    BE1 --> BE3
+    BE1 --> BE4
+    BE4 --> DB1
+    BE3 --> BE4
+    BE1 --> FE2
 
 
-┌──────────────────────────────┐
-│          Frontend            │
-│     (React + TypeScript)     │
-├───────────────┬──────────────┤
-│ Components     │ Pages        │
-│ (UI blocks)    │ (Screens)    │
-├───────────────┴──────────────┤
-│ API Client (Axios)            │
-│ Types (Shared Interfaces)     │
-└──────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────┐
-│           Backend             │
-│       (FastAPI + Python)      │
-├──────────────────────────────┤
-│ main.py (App entry + CORS)    │
-│ schemas.py (Typed models)     │
-│ services/                     │
-│   ├─ osint.py (Recon logic)   │
-│   ├─ mapping.py (MITRE map)   │
-│   └─ mitre.py (Technique DB)  │
-└──────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────┐
-│      MITRE ATT&CK Dataset     │
-│ (Local JSON or static rules)  │
-└──────────────────────────────┘
+...diagram...
+
 
 
 
