@@ -11,7 +11,6 @@ This project demonstrates:
 - A FastAPI backend with typed request/response models  
 - A structured, scalable full‑stack architecture  
 
----
 
 ## 🚀 Features
 
